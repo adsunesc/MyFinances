@@ -39,4 +39,7 @@ public class Usuario {
 	
 	@Column(name = "usu_email", nullable = true, length = 120, unique = true)
 	private String email;
+
+	@Column(name = "usu_apelido", nullable = true, length = 70, unique = false)
+	private String apelido;
 }
