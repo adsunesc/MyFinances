@@ -44,7 +44,7 @@ public class Finances {
 	private Integer parcela;
 	
 	@Column(name = "fin_totalParcela", nullable = false, length = 30, unique = false)
-	private BigDecimal totalParcela;
+	private Integer totalParcela;
 	
 	@Column(name = "fin_valorParcela", nullable = false, length = 30, unique = false)
 	private BigDecimal valorParcela;
@@ -57,7 +57,4 @@ public class Finances {
 	
 	@Column(name = "fin_dataVencimento", nullable = false)
 	private LocalDate dataVencimento;
-	
-	@Column(name = "fin_dataInicio", nullable = false)
-	private LocalDate dataInicio;
 }
