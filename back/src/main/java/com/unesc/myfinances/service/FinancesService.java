@@ -7,12 +7,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.unesc.myfinances.entities.Finances;
+import com.unesc.myfinances.repositories.FinancesRepository;
 
 @Service
 public class FinancesService {
 
 	@Autowired
-	private FinancesService finRepo;
+	private FinancesRepository finRepo;
 	
 	@Transactional(readOnly = true)
 	public void save(Finances finances) {
