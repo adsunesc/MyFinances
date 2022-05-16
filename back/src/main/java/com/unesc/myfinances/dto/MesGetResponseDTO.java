@@ -3,7 +3,6 @@ package com.unesc.myfinances.dto;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.unesc.myfinances.entities.Finances;
 import com.unesc.myfinances.entities.Mes;
 
 import lombok.Data;
@@ -11,6 +10,7 @@ import lombok.Data;
 @Data
 public class MesGetResponseDTO {
 
+	private Long id;
 	private Integer ano;
 	private Integer numeral;
 	private String descricao;
@@ -18,6 +18,7 @@ public class MesGetResponseDTO {
 	
 	public static MesGetResponseDTO convert(Mes mes) {
 		MesGetResponseDTO mesDTO = new MesGetResponseDTO();
+		mesDTO.setId(mes.getId());
 		mesDTO.setAno(mes.getAno());
 		mesDTO.setNumeral(mes.getNumeral());
 		mesDTO.setDescricao(mes.getDescricao());

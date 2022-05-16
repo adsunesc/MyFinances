@@ -22,6 +22,6 @@ public class FinancesTipo {
 	@Column(name = "fint_descricao", nullable = false, length = 120, unique = false)
 	private String descricao;
 
-	@Column(name = "fint_tag", nullable = false, length = 120, unique = false)
+	@Column(name = "fint_tag", nullable = true, length = 120, unique = false)
 	private String tag;
 }

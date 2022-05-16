@@ -5,9 +5,6 @@ import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.unesc.myfinances.entities.Finances;
-import com.unesc.myfinances.entities.FinancesTipo;
-import com.unesc.myfinances.entities.Situacao;
-import com.unesc.myfinances.entities.Usuario;
 
 import lombok.Data;
 
@@ -15,9 +12,8 @@ import lombok.Data;
 public class FinancesPostRequestDTO {
 
 	private String descricao;
-	private Usuario usuario;
-	private Situacao situacao;
-	private FinancesTipo financesTipo;
+//	private Usuario usuario;
+	private Long tipo;
 	private Integer parcela;
 	private Integer totalParcela;
 	private BigDecimal valorParcela;
@@ -31,10 +27,12 @@ public class FinancesPostRequestDTO {
 	}
 	
 	public static Finances convert(Finances finances, FinancesPostRequestDTO finDTO) {
+		Long sitId = (long) 1;
+		
 		finances.setDescricao(finDTO.getDescricao());
-		finances.setUsuario(finDTO.getUsuario());
-		finances.setSituacao(finDTO.getSituacao());
-		finances.setFinancesTipo(finDTO.getFinancesTipo());
+//		finances.setUsuario(finDTO.getUsuario());
+		finances.getSituacao().setId(sitId);
+		finances.getFinancesTipo().setId(finDTO.getTipo());
 		finances.setParcela(finDTO.getParcela());
 		finances.setTotalParcela(finDTO.getTotalParcela());
 		finances.setValorParcela(finDTO.getValorParcela());

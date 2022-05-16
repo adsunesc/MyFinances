@@ -11,6 +11,7 @@ import lombok.Data;
 @Data
 public class UsuarioGetResponseDTO {
 
+	private Long id;
 	private String login;
 	private String senha;
 	private String email;
@@ -19,6 +20,7 @@ public class UsuarioGetResponseDTO {
 	
 	public static UsuarioGetResponseDTO convert(Usuario usuario) {
 		UsuarioGetResponseDTO usuDTO = new UsuarioGetResponseDTO();
+		usuDTO.setId(usuario.getId());
 		usuDTO.setLogin(usuario.getLogin());
 		usuDTO.setSenha(usuario.getSenha());
 		usuDTO.setEmail(usuario.getEmail());

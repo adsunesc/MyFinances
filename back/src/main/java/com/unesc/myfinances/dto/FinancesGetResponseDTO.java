@@ -15,6 +15,7 @@ import lombok.Data;
 @Data
 public class FinancesGetResponseDTO {
 
+	private Long id;
 	private String descricao;
 	private Usuario usuario;
 	private Situacao situacao;
@@ -27,7 +28,7 @@ public class FinancesGetResponseDTO {
 	
 	public static FinancesGetResponseDTO convert(Finances finances) {
 		FinancesGetResponseDTO finDTO = new FinancesGetResponseDTO();
-		finDTO.setDescricao(finances.getDescricao());
+		finDTO.setId(finances.getId());
 		finDTO.setUsuario(finances.getUsuario());
 		finDTO.setSituacao(finances.getSituacao());
 		finDTO.setFinancesTipo(finances.getFinancesTipo());

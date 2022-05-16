@@ -1,6 +1,7 @@
 package com.unesc.myfinances.controllers;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,14 @@ public class MesController {
 	
 	@GetMapping
 	public ResponseEntity<List<MesGetResponseDTO>> list(){
+		List<Mes> mesTemp = new ArrayList<Mes>();
 		List<Mes> mesList = mesService.findAll();
-		List<MesGetResponseDTO> resList = MesGetResponseDTO.convertList(mesList);
+		for(int i = 0 ; i < 2 ; i++) {
+			Mes mes = mesList.get(i);
+			mesTemp.add(mes);
+		}
+		
+		List<MesGetResponseDTO> resList = MesGetResponseDTO.convertList(mesTemp);
 		return ResponseEntity.ok(resList);
 	}
 	
