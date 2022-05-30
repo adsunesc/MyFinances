@@ -28,7 +28,7 @@ public class MesController {
 	public ResponseEntity<List<MesGetResponseDTO>> list(){
 		List<Mes> mesTemp = new ArrayList<Mes>();
 		List<Mes> mesList = mesService.findAll();
-		for(int i = 0 ; i < 2 ; i++) {
+		for(int i = 0 ; i < 3 ; i++) {
 			Mes mes = mesList.get(i);
 			mesTemp.add(mes);
 		}

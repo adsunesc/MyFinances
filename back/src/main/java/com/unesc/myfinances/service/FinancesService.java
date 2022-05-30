@@ -15,8 +15,13 @@ public class FinancesService {
 	@Autowired
 	private FinancesRepository finRepo;
 	
-	@Transactional(readOnly = true)
+	@Transactional(readOnly = false)
 	public void save(Finances finances) {
+		finRepo.save(finances);
+	}
+
+	@Transactional(readOnly = false)
+	public void update(Finances finances) {
 		finRepo.save(finances);
 	}
 	
@@ -24,6 +29,11 @@ public class FinancesService {
 	public Finances getById(Long id) {
 		Finances finances = finRepo.getById(id);
 		return finances;
+	}
+	
+	@Transactional(readOnly = false)
+	public void deleteById(Long id) {
+		finRepo.deleteById(id);
 	}
 	
 	@Transactional(readOnly = true)

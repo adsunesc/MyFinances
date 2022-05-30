@@ -15,9 +15,19 @@ public class UsuarioService {
 	@Autowired
 	private UsuarioRepository usuRepo;
 	
-	@Transactional(readOnly = true)
+	@Transactional(readOnly = false)
 	public void save(Usuario usuario) {
 		usuRepo.save(usuario);
+	}
+
+	@Transactional(readOnly = false)
+	public void update(Usuario usuario) {
+		usuRepo.save(usuario);
+	}
+	
+	@Transactional(readOnly = false)
+	public void deleteById(Long id) {
+		usuRepo.deleteById(id);
 	}
 	
 	@Transactional(readOnly = true)

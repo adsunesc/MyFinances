@@ -9,8 +9,9 @@ import com.unesc.myfinances.entities.Situacao;
 import lombok.Data;
 
 @Data
-public class FinancesPostRequestDTO {
+public class FinancesPutRequestDTO {
 
+	private Long id;
 	private Long tipo;
 	private String descricao;
 	private BigDecimal valorParcela;
@@ -20,11 +21,11 @@ public class FinancesPostRequestDTO {
 //	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ", shape = JsonFormat.Shape.STRING)
 //	private LocalDate dataVencimento;
 	
-	public static Finances convert(FinancesPostRequestDTO finDTO) {
+	public static Finances convert(FinancesPutRequestDTO finDTO) {
 		return convert(new Finances(), finDTO);
 	}
 	
-	public static Finances convert(Finances finances, FinancesPostRequestDTO finDTO) {
+	public static Finances convert(Finances finances, FinancesPutRequestDTO finDTO) {
 		Long sitId = new Long(1);
 		Situacao sit = new Situacao();
 		sit.setId(sitId);
@@ -32,9 +33,10 @@ public class FinancesPostRequestDTO {
 		FinancesTipo fint = new FinancesTipo();
 		fint.setId(finDTO.getTipo());
 		
+		finances.setId(finDTO.getId());
+		finances.setDescricao(finDTO.getDescricao());
 		finances.setSituacao(sit);
 		finances.setFinancesTipo(fint);
-		finances.setDescricao(finDTO.getDescricao());
 		finances.setValorParcela(finDTO.getValorParcela());
 		
 		return finances;

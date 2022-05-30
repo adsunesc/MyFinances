@@ -4,15 +4,20 @@ import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.unesc.myfinances.dto.FinancesGetResponseDTO;
 import com.unesc.myfinances.dto.FinancesPostRequestDTO;
+import com.unesc.myfinances.dto.FinancesPutRequestDTO;
 import com.unesc.myfinances.entities.Finances;
 import com.unesc.myfinances.service.FinancesService;
 
@@ -37,5 +42,21 @@ public class FinancesController {
 		finService.save(finances);
 		
 		return ResponseEntity.ok(FinancesGetResponseDTO.convert(finances));
+	}
+	
+	@PutMapping
+	public ResponseEntity<FinancesGetResponseDTO> update(@RequestBody FinancesPutRequestDTO finDTO) throws ParseException{
+		Finances finances = FinancesPutRequestDTO.convert(finDTO);
+		
+		finService.update(finances);
+		
+		return ResponseEntity.ok(FinancesGetResponseDTO.convert(finances));
+	}
+	
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<Long> delete(@PathVariable Long id) throws ParseException{
+		finService.deleteById(id);
+		
+		return new ResponseEntity<>(id, HttpStatus.OK);
 	}
 }
