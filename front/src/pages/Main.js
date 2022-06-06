@@ -10,8 +10,9 @@ import Header from './Header';
 import FinancesList from './FinancesList';
 import Footer from './Footer';
 
+import MyDrawer from '../components/Menu';
+
 import moment from "moment";
-import FabBack from '../components/FabBack';
 
 export default function Main({ navigation }){
     const { state, dispatch } = useContext(FinancesContext);
@@ -68,10 +69,12 @@ export default function Main({ navigation }){
 
     return(
         <View style={style.container}>
+            {/* <MyDrawer /> */}
             <Header navigation={navigation} />
             <FinancesList navigation={navigation} />
             <Footer navigation={navigation} />
         </View>
+      
     )
 }
 

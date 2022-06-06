@@ -9,6 +9,7 @@ import FinancesContext from '../context/FinancesContext';
 
 export default ({route, navigation}) => {
     
+    const [erro, setErro] = useState("");
     const [finance, setFinance] = useState(route.params ? route.params : []);
     const { state, dispatch } = useContext(FinancesContext);
    
@@ -66,8 +67,10 @@ export default ({route, navigation}) => {
                                 type: 'updateFinance',
                                 payload: response.data,
                             });
+                            navigation.goBack();
                         }).catch((response) => {
                             console.log(response);
+                            setErro("Descrição ou valor invalido!");
                         });
                     } else {
                         console.log(finance);
@@ -81,12 +84,12 @@ export default ({route, navigation}) => {
                                 type: 'createFinance',
                                 payload: response.data,
                             });
+                            navigation.goBack();
                         }).catch((response) => {
                             console.log(response);
+                            setErro("Descrição ou valor invalido!");
                         });
                     }
-
-                    navigation.goBack();
                 }}
             >
                 <IconButton 
@@ -109,6 +112,7 @@ export default ({route, navigation}) => {
                 />
                 <Text style={style.buttonText}>Cancelar</Text>     
             </TouchableOpacity>
+            <Text style={style.text}>{erro}</Text>
             
         </View>
     )
