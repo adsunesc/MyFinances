@@ -16,10 +16,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         
-        backgroundColor: cor_secundaria,
-
-        borderBottomWidth: border_width,
-        borderBottomColor: border_color
+        backgroundColor: cor_secundaria
     }
 });
 

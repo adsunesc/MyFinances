@@ -1,86 +1,86 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput} from 'react-native';
+import React, { useContext, useRef, useState } from 'react';
+import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Colors, IconButton } from 'react-native-paper';
 
-import styles from '../css/Novo';
-import axios from '../services/api';
-import { useNavigation } from '@react-navigation/native';
+import FinancesContext from '../context/FinancesContext';
 
-const Novo = () => {
-    const navigation = useNavigation();
+import axios from '../services/api'
 
-    const [tipoStr, setTipoStr] = useState('');
-    const [descricaoStr, setDescricao] = useState('');
-    const [valorStr, setValor] = useState('');
-    const [quantidadeStr, setQuantidade] = useState('');
-    const [dataStr, setData] = useState('');
+import style from '../css/Main';
 
-    const pressHandler = () => {
-        var data = {
-            "descricao": descricaoStr,
-            "tipo": tipoStr,
-            "totalParcela": quantidadeStr,
-            "valorParcela": valorStr
-        };
+export default function LoginForm({ navigation }){
+    const { dispatch } = useContext(FinancesContext);
+    
+    const login = useRef("");
+    const senha = useRef("");
 
-        console.log(data);
-        axios.post('/finances', { data 
-        })
-        .then(function (response) {
+    function setLogin(loginStr){
+        login.current = loginStr
+    }
+    
+    function setSenha(senhaStr){
+        senha.current = senhaStr
+    }
+
+    const [erro, setErro] = useState([]);
+    function loadLogin(){
+        axios.post('/usuario/login', {
+            "login" : login.current, 
+            "senha" : senha.current
+        }).then((response) => {
+            dispatch({
+                type: 'loadUser',
+                payload: response.data,
+            });
+            navigation.navigate('Main')
+        }).catch((response) => {
             console.log(response);
-            navigation.navigate('Main');
-        })
-        .catch(function (error) {
-            console.log(error);
+            setErro("Login ou Senha incorretos!");
         });
     }
 
-    const pressCancelHandler = () => {
-        navigation.navigate('Main');
-    }
+    return(
+        <View style={style.form}>
+            <Text style={style.text}>Login</Text>
+            <TextInput 
+                style={style.input}            
+                onChangeText={loginStr => setLogin(loginStr)}
+                placeHolder="... Login"
+            />
 
-    return (  
-        <View style={styles.container} >
-            <View style={styles.header} >
-               <Text style={styles.text}>Inserir</Text>
-            </View>
+            <Text style={style.text}>Senha</Text>
+            <TextInput 
+                style={style.input}     
+                secureTextEntry={true}       
+                onChangeText={senhaStr => setSenha(senhaStr)}
+                placeHolder="... Senha"
+            />
 
-            <View style={styles.form} >
-                <TextInput
-                    style={styles.input}
-                    placeholder="Tipo"
-                    onChangeText={(text) => setTipoStr({text})}
-                    keyboardType="numeric"
+            <TouchableOpacity style={style.buttonContainer}
+                onPress={() => loadLogin()}
+            >
+                <IconButton 
+                    icon="check-circle-outline"
+                    color={Colors.lightGreen500}
+                    size={60}
                 />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Descricao"
-                    onChangeText={(text) => setDescricao({text})}
+                <Text style={style.buttonText}>Acessar</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={style.buttonContainer}
+                onPress={() => {
+                    navigation.navigate("Registrar");
+                }}
+            >
+                <IconButton 
+                    icon="playlist-plus"
+                    color={Colors.amber400}
+                    size={60}
                 />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Valor"
-                    onChangeText={(text) => setValor({text})}
-                    keyboardType="numeric"
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Quantidade parcela"
-                    onChangeText={(text) => setQuantidade({text})}
-                    keyboardType="numeric"
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Data Vencimento"
-                    onChangeText={(text) => setData({text})}
-                />
-            </View>
-           
-            <View style={styles.footer} >
-                {/* <Botao nome={'Inserir'} onPress={pressHandler} />
-                <Botao nome={'Cancelar'} onPress={pressCancelHandler} /> */}
-            </View>
+                <Text style={style.buttonText}>Não tem acesso?</Text>
+            </TouchableOpacity>
+
+            <Text style={style.buttonText}>{erro}</Text>
         </View>
     );
-}
- 
-export default Novo;
+};

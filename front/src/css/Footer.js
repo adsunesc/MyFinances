@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     },
     textSaldo: {
         color: font_color,
-        fontSize: font_size
+        fontSize: 18
     },
     teste: {
         backgroundColor: 'none'
