@@ -11,14 +11,14 @@ export default function Header({ navigation }){
   const { state } = useContext(FinancesContext);
   var bigDecimal = require('js-big-decimal');
 
-  const entrada = useRef(0);
-  const saida = useRef(0);
-  const atual = useRef(0);
+  const entrada = useRef(bigDecimal.round(0, 2));
+  const saida = useRef(bigDecimal.round(0, 2));
+  const atual = useRef(bigDecimal.round(0, 2));
 
   function getSaldo(){
-    entrada.current = 0;
-    saida.current = 0;
-    atual.current = 0;
+    entrada.current = bigDecimal.round(0, 2);
+    saida.current = bigDecimal.round(0, 2);
+    atual.current = bigDecimal.round(0, 2);
 
     state.finances.map(fin => {
       if(fin.financesTipo.id == 1){
