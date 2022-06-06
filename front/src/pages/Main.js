@@ -10,16 +10,35 @@ import Header from './Header';
 import FinancesList from './FinancesList';
 import Footer from './Footer';
 
+import moment from "moment";
+import FabBack from '../components/FabBack';
+
 export default function Main({ navigation }){
     const { state, dispatch } = useContext(FinancesContext);
 
+    function getMes(mes, value){
+        var new_date = moment(mes, "YYYY-DD-MM").add(value, 'months');
+
+        var day = new_date.format('DD');
+        var month = new_date.format('MM');
+        var year = new_date.format('YYYY');
+
+        var new_date = (year + "-" + month + "-"+ day);
+
+        return new_date;
+    }
+
+
     useEffect(() => {
         function doData(){
-            axios.get('/finances')
+            axios.post("/finances/usuario", {
+                "id" : state.user.id
+                // "dataVencimento" : state.mesAtual ? state.mesAtual : "2022-06-05"
+            })
             .then((res) => {
                 dispatch({
                     type: 'loadFinances',
-                    payload: res.data,
+                    payload: res.data
                 });  
             })
             .catch((err) => 
@@ -27,20 +46,34 @@ export default function Main({ navigation }){
             );
         }
     
+        // function doDataMes(){
+        //     var mesAtual = state.mesAtual ? state.mesAtual : moment(new Date()).format("YYYY-MM-DD");
+        //     var mesAnterior = getMes(mesAtual, -1);
+        //     var mesPosterior = getMes(mesAtual, +1);
+            
+        //     dispatch({
+        //         type: 'loadMeses',
+        //         payload: {
+        //             "mesAnterior" : mesAnterior,
+        //             "mesAtual" : mesAtual,
+        //             "mesPosterior" : mesPosterior
+        //         }
+        //     });  
+        // }
+        
+        // doDataMes();
         doData();
     }, []);
 
 
     return(
         <View style={style.container}>
-            <Header />
+            <Header navigation={navigation} />
             <FinancesList navigation={navigation} />
             <Footer navigation={navigation} />
         </View>
     )
 }
-
-
 
 const cor_primaria = Globais.cor_primaria; 
 

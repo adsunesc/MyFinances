@@ -7,8 +7,9 @@ import styles from "../css/Finances";
 import axios from '../services/api';
 
 export default function getUserItem({ item: finance }, dispatch, navigation) {
+    var bigDecimal = require('js-big-decimal');
+    
     if(finance.show){
-        console.log(finance);
         return (
             <TouchableOpacity style={styles.container}
                 onPress={() => {
@@ -69,7 +70,7 @@ export default function getUserItem({ item: finance }, dispatch, navigation) {
                     <Text style={styles.descricaoText}>{finance.descricao}</Text>
                 </View>
                 <View style={styles.valor}>
-                    <Text style={styles.valorText}>R$ {finance.valorParcela}</Text>
+                    <Text style={styles.valorText}>R$ {bigDecimal.round(finance.valorParcela, 2)}</Text>
                 </View>
             </TouchableOpacity>
         )

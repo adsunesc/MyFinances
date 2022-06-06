@@ -9,22 +9,23 @@ const cor_tercearia = Globais.cor_tercearia;
 const font_size = Globais.font_size;
 const font_color = Globais.font_color;
 
+const border_width = Globais.border_width;
+const border_color = Globais.border_color;
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'center',
+        justifyContent: 'space-evenly',
         alignItems: 'center',
+        backgroundColor: cor_secundaria,
 
-        margin: 10,
+        borderTopWidth: border_width,
+        borderTopColor: border_color
     },
-
     text: {
-        fontSize: font_size,
         color: font_color,
-
-        textAlign: 'center',
+        fontSize: font_size
     }
 });
 

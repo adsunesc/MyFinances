@@ -3,8 +3,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Main from './src/pages/Main'; 
-import FinancesForm from './src/pages/FinancesForm'; 
+import FinancesForm from './src/pages/FinancesForm';
+
 import LoginForm from './src/pages/LoginForm'; 
+import CadastroForm from './src/pages/CadastroForm';
+
 import { UsersProvider } from './src/context/FinancesContext';
 
 const Stack = createNativeStackNavigator();
@@ -14,8 +17,18 @@ export default function App() {
     <UsersProvider>
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Main"
+        initialRouteName="Login"
       >
+        <Stack.Screen 
+          name="Login" 
+          component={LoginForm} 
+          options={{headerShown: false}}
+        />
+        <Stack.Screen 
+          name="Registrar" 
+          component={CadastroForm} 
+          options={{headerShown: false}}
+        />
         <Stack.Screen 
           name="Main" 
           component={Main} 
