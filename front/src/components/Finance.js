@@ -1,7 +1,7 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import { Colors, IconButton } from 'react-native-paper';
-import { Text, View, TouchableOpacity, Button } from "react-native-web";
-import FinancesContext from "../context/FinancesContext";
+import { Text, View, TouchableOpacity } from "react-native";
+
 import styles from "../css/Finances";
 
 import axios from '../services/api';
@@ -27,7 +27,7 @@ export default function getUserItem({ item: finance }, dispatch, navigation) {
                         icon="pencil-plus-outline"
                         color={Colors.white}
                         size={40}
-                        onPress={() => navigation.navigate('FinanceForm', finance)}
+                        onPress={() => navigation.navigate('FinancesForm', finance)}
                     />
                 </View>
                 <View style={styles.valor}>

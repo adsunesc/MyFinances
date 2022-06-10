@@ -2,13 +2,13 @@ import React, {useContext, useEffect, useState} from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import styles from '../css/Header';
-import FinancesContext from '../context/FinancesContext';
+// import FinancesContext from '../context/FinancesContext';
 
-import Mes from '../components/Mes';
+// import Mes from '../components/Mes';
 import { Colors, IconButton } from 'react-native-paper';
 
 export default function Header({ navigation }){
-  const { state } = useContext(FinancesContext);
+  // const { state } = useContext(FinancesContext);
 
   return (
     <View style={styles.container}>

@@ -2,17 +2,17 @@ import React, { useContext, useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
 
 import Globais from '../config/Globais';
-import FinancesContext from '../context/FinancesContext';
 
+import FinancesContext from '../context/FinancesContext';
 import axios from '../services/api';
 
-import Header from './Header';
-import FinancesList from './FinancesList';
-import Footer from './Footer';
+import Header from '../components/Header';
+import FinancesList from '../components/FinancesList';
+import Footer from '../components/Footer';
 
-import MyDrawer from '../components/Menu';
+// import MyDrawer from '../components/Menu';
 
-import moment from "moment";
+// import moment from "moment";
 
 export default function Main({ navigation }){
     const { state, dispatch } = useContext(FinancesContext);
@@ -69,7 +69,6 @@ export default function Main({ navigation }){
 
     return(
         <View style={style.container}>
-            {/* <MyDrawer /> */}
             <Header navigation={navigation} />
             <FinancesList navigation={navigation} />
             <Footer navigation={navigation} />

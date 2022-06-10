@@ -1,5 +1,3 @@
-import React from 'react';
-
 class Globais{
     static cor_primaria = "#013750";
     static cor_secundaria = "#00988d";

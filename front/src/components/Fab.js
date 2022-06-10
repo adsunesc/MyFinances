@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { StyleSheet } from 'react-native';
 import { FAB, Portal, Provider } from 'react-native-paper';
 
@@ -22,13 +22,13 @@ const MyComponent = ({ navigation }) => {
               icon: 'plus',
               label: 'Entrada',
               small: false,
-              onPress: () => navigation.navigate('FinanceForm', {"financesTipo" : 1}),
+              onPress: () => navigation.navigate('FinancesForm', {"financesTipo" : 1}),
             },
             {
               icon: 'minus',
               label: 'Saida',
               small: false,
-              onPress: () => navigation.navigate('FinanceForm', {"financesTipo" : 2}),
+              onPress: () => navigation.navigate('FinancesForm', {"financesTipo" : 2}),
             },
           ]}
           onStateChange={onStateChange}
@@ -41,10 +41,6 @@ const MyComponent = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   fab: {
-    position: 'absolute',
-    margin: 2,
-    right: 10,
-    bottom: 120,
   },
 })
 

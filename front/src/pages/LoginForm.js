@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useRef, useState, useContext } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { Colors, IconButton } from 'react-native-paper';
 
@@ -69,7 +69,7 @@ export default function LoginForm({ navigation }){
 
             <TouchableOpacity style={style.buttonContainer}
                 onPress={() => {
-                    navigation.navigate("Registrar");
+                    navigation.navigate("Cadastro");
                 }}
             >
                 <IconButton 
