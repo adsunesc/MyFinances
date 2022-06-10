@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { Text, TextInput, View, TouchableOpacity } from 'react-native';
 import { Colors, IconButton } from 'react-native-paper';
-import { StyleSheet } from 'react-native';
 
 import axios from '../services/api';
 

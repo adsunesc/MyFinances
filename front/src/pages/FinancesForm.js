@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { Text, View, TouchableOpacity, TextInput} from 'react-native';
-import { Button, Colors, IconButton } from 'react-native-paper';
+import { Colors, IconButton } from 'react-native-paper';
 
 import style from '../css/Main';
 
 import axios from '../services/api';
+
 import FinancesContext from '../context/FinancesContext';
 
 export default ({route, navigation}) => {

@@ -1,13 +1,11 @@
 import React, {useContext, useEffect, useRef} from 'react';
 import { View, Text } from 'react-native';
-
-import Fab from '../components/Fab';
+import { Avatar, Colors } from 'react-native-paper';
 
 import styles from '../css/Footer';
 import FinancesContext from '../context/FinancesContext';
-import { Avatar, Colors } from 'react-native-paper';
 
-export default function Header({ navigation }){
+export default function Footer({ navigation }){
   const { state } = useContext(FinancesContext);
   var bigDecimal = require('js-big-decimal');
 
@@ -56,7 +54,6 @@ export default function Header({ navigation }){
         <Avatar.Icon size={50} color={Colors.white} icon="clipboard-flow-outline" style={styles.teste}/>
         <Text style={styles.textSaldo}>R$ {atual.current}</Text>
       </View>
-      <Fab navigation={navigation} />
     </View>
   )
 };

@@ -1,4 +1,4 @@
-import React, { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import Globais from '../config/Globais';
 
@@ -23,6 +23,8 @@ const styles = StyleSheet.create({
     },
     input: {
         height: 70,
+        width: '100%',
+
         borderColor: cor_secundaria,
         borderWidth: 5,
         marginBottom: 10,
@@ -43,7 +45,7 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         
         height: 70,
-        width: "60%",
+        width: "80%",
 
         margin: 8
     },

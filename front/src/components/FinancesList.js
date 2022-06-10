@@ -1,14 +1,12 @@
-import React, {useContext, useEffect, useState} from 'react';
-import { View } from 'react-native';
+import React, {useContext} from 'react';
+import { View, FlatList } from 'react-native';
 
-import styles from '../css/FinancesCarrousel';
+import styles from '../css/FinancesList';
+
 import FinancesContext from '../context/FinancesContext';
+import Finance from './Finance';
 
-import Finance from '../components/Finance';
-
-import axios from '../services/api';
-import { FlatList } from 'react-native-web';
-import FabBack from '../components/FabBack';
+import Fab from './Fab';
 
 export default function FinancesList({ navigation }){
   const { state, dispatch } = useContext(FinancesContext);
@@ -20,6 +18,7 @@ export default function FinancesList({ navigation }){
             keyExtractor={finance => finance.id.toString()}
             renderItem={item => Finance(item, dispatch, navigation)}
         />
+         <Fab navigation={navigation} />
     </View>
   )
 };
