@@ -41,12 +41,12 @@ export default function Footer({ navigation }){
   return (
     <View style={styles.container}>
       <View style={styles.containerSaldo}>
-        <Avatar.Icon size={50} color={Colors.white} icon="clipboard-arrow-up-outline" style={styles.teste}/>
+        <Avatar.Icon size={50} color={"green"} icon="clipboard-arrow-up-outline" style={styles.teste}/>
         <Text style={styles.textSaldo}>R$ {entrada.current}</Text>
       </View>
 
-      <View style={styles.containerSaldo}>
-        <Avatar.Icon size={50} color={Colors.white} icon="clipboard-arrow-down-outline" style={styles.teste}/>
+      <View style={styles.containerSaldoCentro}>
+        <Avatar.Icon size={50} color={Colors.red400} icon="clipboard-arrow-down-outline" style={styles.teste}/>
         <Text style={styles.textSaldo}>R$ {saida.current}</Text>
       </View>
 

@@ -11,8 +11,8 @@ import style from '../css/Main';
 export default function LoginForm({ navigation }){
     const { dispatch } = useContext(FinancesContext);
     
-    const login = useRef("");
-    const senha = useRef("");
+    const login = useRef("fabiopb");
+    const senha = useRef("1234");
 
     function setLogin(loginStr){
         login.current = loginStr

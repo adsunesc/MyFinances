@@ -1,10 +1,45 @@
 import React, { useContext } from 'react';
 import { Colors, IconButton } from 'react-native-paper';
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity, Alert } from "react-native";
 
 import styles from "../css/Finances";
 
 import axios from '../services/api';
+
+const showAlert = (finance, dispatch) =>
+  Alert.alert(
+    'Realmente deseja deletar essa Financia?',
+    '',
+    [
+      {
+        text: 'Ok',
+        onPress: () => {
+            var id = finance.id;
+            axios.delete(`/finances/${id}`)
+            .then((response) => {
+                console.log(response);
+                dispatch({
+                    type: 'deleteFinance',
+                    payload: response.data,
+                });
+            }).catch((response) => {
+                console.log(response);
+            });
+        },
+        style: 'ok',
+      },
+      {
+        text: 'Cancelar',
+        style: 'cancel',
+      },
+    ],
+    {
+      cancelable: true,
+      onDismiss: () =>
+        Alert.alert('This alert was dismissed by tapping outside of the alert dialog.'),
+    }
+);
+
 
 export default function getUserItem({ item: finance }, dispatch, navigation) {
     var bigDecimal = require('js-big-decimal');
@@ -35,20 +70,7 @@ export default function getUserItem({ item: finance }, dispatch, navigation) {
                         icon="trash-can-outline"
                         color={Colors.red500}
                         size={40}
-                        onPress={() => {
-                            var id = finance.id;
-                            axios.delete(`/finances/${id}`)
-                            .then((response) => {
-                                console.log(response);
-                                dispatch({
-                                    type: 'deleteFinance',
-                                    payload: response.data,
-                                });
-                            }).catch((response) => {
-                                console.log(response);
-                                console.log("Falha ao deletar a financia de id:" + user.id);
-                            });
-                        }}
+                        onPress={() => showAlert(finance, dispatch)}
                     />
                 </View>
             </TouchableOpacity>

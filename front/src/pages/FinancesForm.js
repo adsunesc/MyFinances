@@ -13,7 +13,7 @@ export default ({route, navigation}) => {
     const [erro, setErro] = useState("");
     const [finance, setFinance] = useState(route.params ? route.params : []);
     const { state, dispatch } = useContext(FinancesContext);
-   
+
     return (
         <View style={style.form}>
             <View style={style.viewStatus}>
@@ -35,7 +35,7 @@ export default ({route, navigation}) => {
                 onChangeText={valorParcela => setFinance({...finance, valorParcela})}
                 placeHolder="Informe o Valor"
                 keyboardType="decimal-pad"
-                value={finance.valorParcela}
+                value={finance.valorParcela ? finance.valorParcela.toString() : finance.valorParcela}
             />
 
             {/* <Text>Parcelas</Text>
@@ -54,67 +54,60 @@ export default ({route, navigation}) => {
                 value={finance.dataVencimento}
             /> */}
 
-            <TouchableOpacity style={style.buttonContainer}
-                onPress={() => {
-                    if(finance.id){
-                        axios.put('/finances', {
-                            "id" : finance.id,
-                            "tipo" :finance.financesTipo.id, 
-                            "descricao" : finance.descricao,
-                            "usuarioId" : state.user.id,
-                            "valorParcela" : finance.valorParcela
-                        }).then((response) => {
-                            dispatch({
-                                type: 'updateFinance',
-                                payload: response.data,
-                            });
-                            navigation.goBack();
-                        }).catch((response) => {
-                            console.log(response);
-                            setErro("Descrição ou valor invalido!");
-                        });
-                    } else {
-                        console.log(finance);
-                        axios.post('/finances', {
-                            "tipo" : finance.financesTipo, 
-                            "descricao" : finance.descricao,
-                            "usuarioId" : state.user.id,
-                            "valorParcela" : finance.valorParcela
-                        }).then((response) => {
-                            dispatch({
-                                type: 'createFinance',
-                                payload: response.data,
-                            });
-                            navigation.goBack();
-                        }).catch((response) => {
-                            console.log(response);
-                            setErro("Descrição ou valor invalido!");
-                        });
-                    }
-                }}
-            >
+            <View style={style.buttonView}>
                 <IconButton 
                     icon="check-circle-outline"
                     color={Colors.green400}
                     size={60}
+                    onPress={() => {
+                        if(finance.id){
+                            axios.put('/finances', {
+                                "id" : finance.id,
+                                "tipo" :finance.financesTipo.id, 
+                                "descricao" : finance.descricao,
+                                "usuarioId" : state.user.id,
+                                "valorParcela" : finance.valorParcela
+                            }).then((response) => {
+                                dispatch({
+                                    type: 'updateFinance',
+                                    payload: response.data,
+                                });
+                                navigation.goBack();
+                            }).catch((response) => {
+                                console.log(response);
+                                setErro("Descrição ou valor invalido!");
+                            });
+                        } else {
+                            console.log(finance);
+                            axios.post('/finances', {
+                                "tipo" : finance.financesTipo, 
+                                "descricao" : finance.descricao,
+                                "usuarioId" : state.user.id,
+                                "valorParcela" : finance.valorParcela
+                            }).then((response) => {
+                                dispatch({
+                                    type: 'createFinance',
+                                    payload: response.data,
+                                });
+                                navigation.goBack();
+                            }).catch((response) => {
+                                console.log(response);
+                                setErro("Descrição ou valor invalido!");
+                            });
+                        }
+                    }}
                 />
-                <Text style={style.buttonText}>Adicionar</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={style.buttonContainer}
-                onPress={() => {
-                    navigation.goBack();
-                }}
-            >
+                
                <IconButton 
                     icon="close-outline"
                     color={Colors.red500}
                     size={60}
+                    onPress={() => {
+                        navigation.goBack();
+                    }}
                 />
-                <Text style={style.buttonText}>Cancelar</Text>     
-            </TouchableOpacity>
+            </View>
             <Text style={style.text}>{erro}</Text>
-            
         </View>
     )
 
