@@ -36,6 +36,11 @@ const styles = StyleSheet.create({
         color: font_color,
         fontSize: font_size
     },
+    buttonView: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignItems: 'center'
+    },
     buttonContainer: {
         flexDirection: 'row',
         justifyContent: 'flex-start',

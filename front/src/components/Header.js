@@ -2,23 +2,26 @@ import React, {useContext, useEffect, useState} from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import styles from '../css/Header';
-// import FinancesContext from '../context/FinancesContext';
+import FinancesContext from '../context/FinancesContext';
 
-// import Mes from '../components/Mes';
 import { Colors, IconButton } from 'react-native-paper';
 
 export default function Header({ navigation }){
-  // const { state } = useContext(FinancesContext);
+  const { dispatch } = useContext(FinancesContext);
 
   return (
     <View style={styles.container}>
       <IconButton
         style={style.buttonBack} 
-        icon="power-standby"
+        icon="account-arrow-left-outline"
         color={Colors.red500}
         size={60}
         onPress={() => {
             navigation.goBack();
+
+            dispatch({
+              type: 'logoutUser'
+            });
         }} 
     />
       {/* <Mes mes={state.mesAnterior}/>

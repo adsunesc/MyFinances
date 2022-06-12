@@ -23,6 +23,17 @@ const styles = StyleSheet.create({
         borderTopWidth: border_width,
         borderTopColor: border_color
     },
+    containerSaldoCentro: {
+        flex: 2,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+
+        borderLeftWidth: 2,
+        borderRightWidth: 2,
+
+        borderColor: 'white'
+    },
     containerSaldo: {
         flex: 2,
         flexDirection: 'row',
@@ -31,9 +42,10 @@ const styles = StyleSheet.create({
     },
     textSaldo: {
         color: font_color,
-        fontSize: 18
+        fontSize: 15
     },
     teste: {
+        width: 30,
         backgroundColor: 'none'
     }
 });

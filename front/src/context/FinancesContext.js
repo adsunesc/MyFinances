@@ -37,6 +37,10 @@ const actions = {
             ...state,
             user: user
         }
+    },  
+    logoutUser(){
+        return{
+        }
     },   
     loadFinances(state, action){
         const finances = action.payload

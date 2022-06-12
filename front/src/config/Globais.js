@@ -6,7 +6,7 @@ class Globais{
     static border_width = 1;
     static border_color = "white";
 
-    static font_size = 30;
+    static font_size = 20;
     static font_color = "white";
 
 }
